@@ -1,0 +1,50 @@
+/**
+ * main.scss
+ * Main stylesheet aggregator for the GMS Lightbox System
+ * 
+ * This file imports all component stylesheets in the correct order.
+ * It ensures all styles are compiled and bundled together.
+ */
+
+// gms: Import core lightbox styles
+@import '../core/gms-core.scss';
+
+// gms: Import PDF module styles
+@import '../modules/pdf/gms-pdf.scss';
+
+// gms: Future module styles (when implemented)
+// @import './modules/image/gms-image.scss';
+// @import './modules/video/gms-video.scss';
+// @import './modules/gallery/gms-gallery.scss';
+
+/**
+ * Global resets and base styles for GMS system
+ */
+
+// gms: Box-sizing reset for all GMS elements
+[class^="gms-"],
+[class*=" gms-"] {
+  box-sizing: border-box;
+}
+
+// gms: Prevent text selection in UI controls
+.gms-lightbox-close,
+.gms-pdf-nav-btn,
+.gms-pdf-zoom-btn {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+// gms: Smooth scrolling for PDF content
+.gms-pdf-content {
+  scroll-behavior: smooth;
+}
+
+// gms: Print styles - hide lightbox when printing
+@media print {
+  .gms-lightbox-overlay {
+    display: none !important;
+  }
+}

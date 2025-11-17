@@ -1,0 +1,24 @@
+{
+  "name": "gms-lightbox",
+  "version": "1.0.0",
+  "description": "Modular, extensible, mobile-friendly lightbox library with PDF support",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "lightbox",
+    "pdf-viewer",
+    "glightbox",
+    "modular",
+    "mobile-friendly"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "sass": "^1.69.0"
+  }
+}

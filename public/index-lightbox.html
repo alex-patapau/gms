@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GMS Lightbox System - Modern modular PDF viewer">
+    <title>GMS Lightbox - PDF Viewer Demo</title>
+    
+    <style>
+        /* Demo page styles (not part of GMS system) */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .demo-container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+        
+        .demo-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .demo-btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-decoration: none;
+            display: inline-block;
+            min-width: 200px;
+        }
+        
+        .demo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .demo-btn:active {
+            transform: translateY(0);
+        }
+        
+        .info-box {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 40px;
+            text-align: left;
+        }
+        
+        .info-box h2 {
+            margin-top: 0;
+            font-size: 24px;
+        }
+        
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .info-box li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+        
+        .info-box li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        code {
+            background: rgba(0,0,0,0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .info-box {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1>🎯 GMS Lightbox</h1>
+        <p class="subtitle">Modern Modular PDF Viewer System</p>
+        
+        <div class="demo-buttons">
+            <!-- GMS PDF Viewer Demo -->
+            <a href="#" 
+               class="demo-btn"
+               data-glightbox 
+               data-type="pdf" 
+               data-url="/uvvnvdywkmxfnrs6dy2pmbmqgki4ottr.pdf"
+               data-title="Sample PDF Document">
+                📄 Open PDF Example
+            </a>
+            
+            <!-- Future module demos (placeholders) -->
+            <a href="#" 
+               class="demo-btn"
+               data-glightbox 
+               data-type="image" 
+               data-url="https://picsum.photos/1200/800"
+               data-title="Sample Image">
+                🖼️ Open Image (Coming Soon)
+            </a>
+            
+            <a href="#" 
+               class="demo-btn"
+               data-glightbox 
+               data-type="video" 
+               data-url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+               data-title="Sample Video">
+                🎥 Open Video (Coming Soon)
+            </a>
+        </div>
+        
+        <div class="info-box">
+            <h2>✨ Features</h2>
+            <ul>
+                <li>Modular ES6 architecture</li>
+                <li>Mobile-first responsive design</li>
+                <li>Touch gesture support (swipe navigation)</li>
+                <li>Keyboard navigation (ESC, arrows)</li>
+                <li>Zero naming conflicts (<code>gms-</code> prefix)</li>
+                <li>Vite-powered build system</li>
+                <li>PDF.js integration for documents</li>
+                <li>Extensible plugin system</li>
+                <li>Comprehensive JSDoc documentation</li>
+                <li>iOS & Android optimized</li>
+            </ul>
+        </div>
+        
+        <div class="info-box">
+            <h2>🚀 Usage</h2>
+            <p>Add to any element with <code>data-glightbox</code>:</p>
+            <pre style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 6px; overflow-x: auto;"><code>&lt;a href="#" 
+   data-glightbox 
+   data-type="pdf" 
+   data-url="document.pdf"&gt;
+  Open PDF
+&lt;/a&gt;</code></pre>
+        </div>
+    </div>
+    
+    <!-- GMS Lightbox System (ES Module) -->
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
