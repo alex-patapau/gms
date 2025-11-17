@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Viewer с Lightbox</title>
+    <!-- GLightbox CSS v3.3.1 от 21 января 2025 года -->
+    <link rel="stylesheet" href="assets/glightbox.min.css">
+    <!-- Основные стили приложения -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>PDF Просмотрщик с Lightbox</h1>
+    <button class="open-pdf-btn" data-pdf-url="uvvnvdywkmxfnrs6dy2pmbmqgki4ottr.pdf">
+        Открыть PDF v0.10.15
+    </button>
+
+    <div class="pdf-viewer">
+        <div class="pdf-viewer-content">
+            <div class="pdf-header">
+                <h2 class="pdf-title">PDF Документ</h2>
+                <button class="pdf-close">&times;</button>
+            </div>
+            <div class="pdf-content">
+                <div class="loading">Загрузка PDF...</div>
+                <div class="pdf-pages-container"></div>
+            </div>
+            <div class="pdf-controls">
+                <div class="zoom-controls">
+                    <button class="zoom-btn" data-zoom="out">−</button>
+                    <span class="zoom-level">100%</span>
+                    <button class="zoom-btn" data-zoom="in">+</button>
+                    <button class="zoom-btn" data-zoom="reset">Сброс</button>
+                </div>
+                <div class="navigation">
+                    <button class="nav-btn" data-nav="prev" disabled>← Назад</button>
+                    <span class="page-info">Страница <span class="current-page">1</span> из <span class="total-pages">?</span></span>
+                    <button class="nav-btn" data-nav="next">Вперёд →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GLightbox JS v3.3.1 от 21 января 2025 года -->
+    <script type="module" src="assets/glightbox.min.js"></script>
+    <!-- Основной JavaScript код приложения (ES модуль) -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
