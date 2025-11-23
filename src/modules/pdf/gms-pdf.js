@@ -23,7 +23,7 @@ import { gmsRegisterModule } from '../../core/gms-core.js';
  * PDF.js library (imported from local assets)
  * Using local files to avoid CDN dependencies
  */
-let pdfjsLib = null;
+import * as pdfjsLib from '../../lib/pdf.min.mjs';
 
 /**
  * Module state for current PDF session
@@ -48,26 +48,20 @@ const gmsPdfState = {
  * Initialize PDF.js library and worker
  * This is called once when the module is loaded
  * @private
- * @returns {Promise<void>}
  */
-async function gmsInitPdfJs() {
-  if (pdfjsLib) {
-    return; // Already initialized
-  }
+function gmsInitPdfJs() {
+  // gms: Calculate worker path relative to this script location
+  // This uses import.meta.url to get the current module's URL
+  // and resolves the worker path relative to it
+  /* @vite-ignore */
+  const workerPath = new URL('./pdf.worker.min.mjs', import.meta.url).href;
   
-  try {
-    // gms: Import PDF.js from src/lib directory
-    pdfjsLib = await import('../../lib/pdf.min.mjs');
-    
-    // gms: Configure worker from local file using URL constructor
-    const workerUrl = new URL('../../lib/pdf.worker.min.mjs', import.meta.url);
-    pdfjsLib.GlobalWorkerOptions.workerSrc = workerUrl.toString();
-    
-    console.log('[GMS PDF] PDF.js initialized successfully');
-  } catch (error) {
-    console.error('[GMS PDF] Failed to initialize PDF.js:', error);
-    throw error;
-  }
+  console.log('[GMS PDF] Current script URL:', import.meta.url);
+  console.log('[GMS PDF] Configuring PDF.js worker (relative):', workerPath);
+  
+  pdfjsLib.GlobalWorkerOptions.workerSrc = workerPath;
+  
+  console.log('[GMS PDF] PDF.js initialized successfully');
 }
 
 /**
@@ -478,9 +472,10 @@ function gmsPdfSetupEventHandlers() {
  */
 async function gmsPdfRender({ url, title, element, container, isMobile }) {
   console.log(`[GMS PDF] Rendering PDF: ${url}`);
+  console.log('[GMS PDF] Mobile device:', isMobile);
   
   // gms: Initialize PDF.js if needed
-  await gmsInitPdfJs();
+  gmsInitPdfJs();
   
   // gms: Reset module state
   gmsPdfState.pdfDoc = null;

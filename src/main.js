@@ -14,8 +14,11 @@
 // gms: Import core system
 import { gmsInitCore } from './core/gms-core.js';
 
-// gms: Import feature modules (each auto-registers itself)
-import './modules/pdf/gms-pdf.js';
+// gms: Import feature modules with dynamic import for code splitting
+// PDF module is loaded dynamically to create a separate chunk
+import('./modules/pdf/gms-pdf.js');
+
+// gms: Other modules (placeholder - can be loaded dynamically too)
 import './modules/image/gms-image.js';
 import './modules/video/gms-video.js';
 import './modules/gallery/gms-gallery.js';

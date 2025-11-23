@@ -129,9 +129,13 @@ export function gmsOpenLightbox(element) {
   // gms: Parse attributes from trigger element
   const type = element.getAttribute('data-gms-type') || element.getAttribute('data-type') || 'image';
   const url = element.getAttribute('data-url') || element.getAttribute('href');
-  const title = element.getAttribute('data-title') || '';
+  // gms: Get title from data-title attribute or link text content
+  const title = element.getAttribute('data-title') || 
+                element.getAttribute('data-gms-title') || 
+                element.textContent.trim() || 
+                '';
   
-  console.log(`[GMS Core] Opening lightbox: type=${type}, url=${url}`);
+  console.log(`[GMS Core] Opening lightbox: type=${type}, url=${url}, title=${title}`);
   
   // gms: Check if module exists for this type
   const renderFn = gmsState.registeredModules[type];
