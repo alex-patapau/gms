@@ -6,16 +6,16 @@
  * It ensures all styles are compiled and bundled together.
  */
 
-// gms: Import core lightbox styles
-@import '../core/gms-core.scss';
+// gms: Use modern Sass @use instead of deprecated @import
+@use '../core/gms-core.scss';
 
 // gms: Import PDF module styles
-@import '../modules/pdf/gms-pdf.scss';
+@use '../modules/pdf/gms-pdf.scss';
 
 // gms: Future module styles (when implemented)
-// @import './modules/image/gms-image.scss';
-// @import './modules/video/gms-video.scss';
-// @import './modules/gallery/gms-gallery.scss';
+// @use './modules/image/gms-image.scss';
+// @use './modules/video/gms-video.scss';
+// @use './modules/gallery/gms-gallery.scss';
 
 /**
  * Global resets and base styles for GMS system
