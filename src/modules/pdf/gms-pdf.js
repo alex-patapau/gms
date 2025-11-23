@@ -26,6 +26,103 @@ import { gmsRegisterModule } from '../../core/gms-core.js';
 import * as pdfjsLib from '../../lib/pdf.min.mjs';
 
 /**
+ * Translations for PDF viewer UI
+ * Supports multiple languages based on browser locale
+ * @private
+ */
+const gmsPdfTranslations = {
+  en: {
+    loading: 'Loading PDF...',
+    page: 'Page',
+    of: 'of',
+    prev: 'Prev',
+    next: 'Next',
+    reset: 'Reset',
+    zoomIn: 'Zoom in',
+    zoomOut: 'Zoom out',
+    resetZoom: 'Reset zoom',
+    previousPage: 'Previous page',
+    nextPage: 'Next page'
+  },
+  ru: {
+    loading: 'Загрузка PDF...',
+    page: 'Страница',
+    of: 'из',
+    prev: 'Назад',
+    next: 'Вперёд',
+    reset: 'Сброс',
+    zoomIn: 'Увеличить',
+    zoomOut: 'Уменьшить',
+    resetZoom: 'Сбросить масштаб',
+    previousPage: 'Предыдущая страница',
+    nextPage: 'Следующая страница'
+  },
+  uk: {
+    loading: 'Завантаження PDF...',
+    page: 'Сторінка',
+    of: 'з',
+    prev: 'Назад',
+    next: 'Вперед',
+    reset: 'Скинути',
+    zoomIn: 'Збільшити',
+    zoomOut: 'Зменшити',
+    resetZoom: 'Скинути масштаб',
+    previousPage: 'Попередня сторінка',
+    nextPage: 'Наступна сторінка'
+  },
+  de: {
+    loading: 'PDF wird geladen...',
+    page: 'Seite',
+    of: 'von',
+    prev: 'Zurück',
+    next: 'Weiter',
+    reset: 'Zurücksetzen',
+    zoomIn: 'Vergrößern',
+    zoomOut: 'Verkleinern',
+    resetZoom: 'Zoom zurücksetzen',
+    previousPage: 'Vorherige Seite',
+    nextPage: 'Nächste Seite'
+  },
+  fr: {
+    loading: 'Chargement PDF...',
+    page: 'Page',
+    of: 'sur',
+    prev: 'Préc',
+    next: 'Suiv',
+    reset: 'Réinit',
+    zoomIn: 'Zoomer',
+    zoomOut: 'Dézoomer',
+    resetZoom: 'Réinitialiser le zoom',
+    previousPage: 'Page précédente',
+    nextPage: 'Page suivante'
+  },
+  es: {
+    loading: 'Cargando PDF...',
+    page: 'Página',
+    of: 'de',
+    prev: 'Anterior',
+    next: 'Siguiente',
+    reset: 'Restablecer',
+    zoomIn: 'Acercar',
+    zoomOut: 'Alejar',
+    resetZoom: 'Restablecer zoom',
+    previousPage: 'Página anterior',
+    nextPage: 'Página siguiente'
+  }
+};
+
+/**
+ * Get translations for current browser language
+ * Falls back to English if language not supported
+ * @private
+ * @returns {Object} Translation strings
+ */
+function gmsPdfGetTranslations() {
+  const lang = navigator.language.split('-')[0]; // Get primary language code (e.g., 'en' from 'en-US')
+  return gmsPdfTranslations[lang] || gmsPdfTranslations.en;
+}
+
+/**
  * Module state for current PDF session
  * @private
  */
@@ -310,6 +407,9 @@ function gmsPdfCreateUI(title) {
   const wrapper = document.createElement('div');
   wrapper.className = 'gms-pdf-viewer';
   
+  // gms: Get translations for current language
+  const t = gmsPdfGetTranslations();
+  
   // gms: Header with title
   const header = document.createElement('div');
   header.className = 'gms-pdf-header';
@@ -321,7 +421,7 @@ function gmsPdfCreateUI(title) {
   const content = document.createElement('div');
   content.className = 'gms-pdf-content';
   content.innerHTML = `
-    <div class="gms-pdf-loading">Loading PDF...</div>
+    <div class="gms-pdf-loading">${t.loading}</div>
     <div class="gms-pdf-pages-container"></div>
   `;
   
@@ -330,17 +430,17 @@ function gmsPdfCreateUI(title) {
   controls.className = 'gms-pdf-controls';
   controls.innerHTML = `
     <div class="gms-pdf-zoom-controls">
-      <button class="gms-pdf-zoom-btn" data-gms-zoom="out" aria-label="Zoom out">−</button>
+      <button class="gms-pdf-zoom-btn" data-gms-zoom="out" aria-label="${t.zoomOut}">−</button>
       <span class="gms-pdf-zoom-level">100%</span>
-      <button class="gms-pdf-zoom-btn" data-gms-zoom="in" aria-label="Zoom in">+</button>
-      <button class="gms-pdf-zoom-btn" data-gms-zoom="reset" aria-label="Reset zoom">Reset</button>
+      <button class="gms-pdf-zoom-btn" data-gms-zoom="in" aria-label="${t.zoomIn}">+</button>
+      <button class="gms-pdf-zoom-btn" data-gms-zoom="reset" aria-label="${t.resetZoom}">${t.reset}</button>
     </div>
     <div class="gms-pdf-navigation">
-      <button class="gms-pdf-nav-btn" data-gms-nav="prev" disabled aria-label="Previous page">← Prev</button>
+      <button class="gms-pdf-nav-btn" data-gms-nav="prev" disabled aria-label="${t.previousPage}">← ${t.prev}</button>
       <span class="gms-pdf-page-info">
-        Page <span class="gms-pdf-current-page">1</span> of <span class="gms-pdf-total-pages">?</span>
+        ${t.page} <span class="gms-pdf-current-page">1</span> ${t.of} <span class="gms-pdf-total-pages">?</span>
       </span>
-      <button class="gms-pdf-nav-btn" data-gms-nav="next" aria-label="Next page">Next →</button>
+      <button class="gms-pdf-nav-btn" data-gms-nav="next" aria-label="${t.nextPage}">${t.next} →</button>
     </div>
   `;
   
