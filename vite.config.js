@@ -11,14 +11,24 @@ export default defineConfig(({ mode }) => {
   
   return {
     root: './',
-    publicDir: 'assets',
+    publicDir: 'public',
     
     build: {
       outDir: 'dist',
       emptyOutDir: true,
       rollupOptions: {
-        input: {
-          main: resolve(__dirname, 'public/index-lightbox.html')
+        input: resolve(__dirname, 'index.html'),
+        output: {
+          // gms: Custom naming for generated files to avoid conflicts
+          entryFileNames: 'assets/gms-main-[hash].js',
+          chunkFileNames: 'assets/gms-[name]-[hash].js',
+          assetFileNames: (assetInfo) => {
+            // gms: Rename CSS files with gms- prefix
+            if (assetInfo.name && assetInfo.name.endsWith('.css')) {
+              return 'assets/gms-main-[hash].css';
+            }
+            return 'assets/[name]-[hash][extname]';
+          }
         }
       },
       // gms: Generate sourcemaps only in development

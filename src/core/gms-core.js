@@ -127,7 +127,7 @@ export function gmsOpenLightbox(element) {
   gmsState.isMobile = gmsDetectMobile();
   
   // gms: Parse attributes from trigger element
-  const type = element.getAttribute('data-type') || 'image';
+  const type = element.getAttribute('data-gms-type') || element.getAttribute('data-type') || 'image';
   const url = element.getAttribute('data-url') || element.getAttribute('href');
   const title = element.getAttribute('data-title') || '';
   
@@ -250,8 +250,8 @@ function gmsHandleKeyboard(e) {
 function gmsSetupEventDelegation() {
   // gms: Use event delegation on document for maximum compatibility
   document.addEventListener('click', (e) => {
-    // gms: Find closest element with data-glightbox attribute
-    const trigger = e.target.closest('[data-glightbox]');
+    // gms: Find closest element with gms-lightbox class or data-glightbox attribute
+    const trigger = e.target.closest('.gms-lightbox, [data-glightbox]');
     
     if (trigger) {
       e.preventDefault();
