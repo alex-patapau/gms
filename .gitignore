@@ -23,6 +23,3 @@ npm-debug.log*
 # Temporary files
 *.tmp
 .cache/
-
-# Documentation (Russian version - auto-generated)
-README-RU.md
